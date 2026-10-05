@@ -149,3 +149,21 @@ WITH (
 );
 
 ```
+
+This is the most normal way to import the `.csv` data. However, in fact, there are empty lines in `male_players.csv` file. PostgreSQL may fail to import because it interprets that empty line as a CSV record, where there is no any value. Below are possible error information:
+
+``` 
+ERROR: missing data for column "player_url" CONTEXT: COPY male_players, line 2: ""
+```
+
+
+So after exit from the PostgreSQL interactive terminal, you can also alternatively use the command in the terminal,  and execute:
+
+```
+
+sed '/^[[:space:]]*$/d' ./male_players.csv \
+| psql -U your_username -d your_database -c "\copy male_players FROM STDIN WITH (FORMAT CSV, HEADER TRUE, NULL '')"
+
+```
+
+This command remove all empty lines in `male_players.csv` first and then feed it in pipe to the psql process. In Linux, `sed` stands for Stream Editor. It’s a command-line tool used to find, replace, delete, insert, or modify text in files or command output. For more details and usages, you can ask LLM AI. 

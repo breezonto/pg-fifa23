@@ -159,11 +159,9 @@ ERROR: missing data for column "player_url" CONTEXT: COPY male_players, line 2: 
 
 So after exit from the PostgreSQL interactive terminal, you can also alternatively use the command in the terminal,  and execute:
 
-```
-
+```shell
 sed '/^[[:space:]]*$/d' ./male_players.csv \
 | psql -U your_username -d your_database -c "\copy male_players FROM STDIN WITH (FORMAT CSV, HEADER TRUE, NULL '')"
-
 ```
 
 This command remove all empty lines in `male_players.csv` first and then feed it in pipe to the psql process. In Linux, `sed` stands for Stream Editor. It’s a command-line tool used to find, replace, delete, insert, or modify text in files or command output. For more details and usages, you can ask LLM AI. 

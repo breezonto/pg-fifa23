@@ -25,3 +25,7 @@ fifa-23-complete-player-dataset/
 ├── female_coaches.csv - 5.3K
 └── male_coaches.csv   - 130K
 ```
+
+## Claim
+
+This dataset is used solely for academic and research purposes. It is used to support data analysis, visualization, and research activities, and is not intended for commercial use or redistribution.
